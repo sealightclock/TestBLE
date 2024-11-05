@@ -21,6 +21,7 @@ class MainActivity : ComponentActivity() {
         Log.d(TAG, "onCreate")
 
         super.onCreate(savedInstanceState)
+
         enableEdgeToEdge()
 
         setContent {
