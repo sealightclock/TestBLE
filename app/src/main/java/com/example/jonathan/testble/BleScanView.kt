@@ -58,12 +58,17 @@ fun BleScanner() {
         ActivityResultContracts.RequestPermission()
     ) { isGranted: Boolean ->
         if (isGranted) {
+            Log.v(TAG, "BleScanner: launcher: isGranted == true")
+
             // Permission granted, start scanning
             if (isScanning) {
+                Log.v(TAG, "BleScanner: launcher: isGranted == true: startScan...")
+
                 bluetoothAdapter.bluetoothLeScanner?.startScan(scanCallback)
             }
         } else {
             // Permission denied, handle accordingly
+            Log.w(TAG, "BleScanner: launcher: isGranted == false")
         }
     }
 
@@ -73,18 +78,28 @@ fun BleScanner() {
         verticalArrangement = Arrangement.Center
     ) {
         Button(onClick = {
+            Log.d(TAG, "Button: onClick")
+
             if (ContextCompat.checkSelfPermission(
                     context,
                     Manifest.permission.BLUETOOTH_SCAN
                 ) == PackageManager.PERMISSION_GRANTED
             ) {
+                Log.v(TAG, "Button: onClick: PERMISSION_GRANTED")
+
                 isScanning = !isScanning
                 if (isScanning) {
+                    Log.v(TAG, "Button: onClick: PERMISSION_GRANTED: startScan")
+
                     bluetoothAdapter.bluetoothLeScanner?.startScan(scanCallback)
                 } else {
+                    Log.v(TAG, "Button: onClick: PERMISSION_GRANTED: stopScan")
+
                     bluetoothAdapter.bluetoothLeScanner?.stopScan(scanCallback)
                 }
             } else {
+                Log.v(TAG, "Button: onClick: Request permission BLUETOOTH_SCAN")
+
                 launcher.launch(Manifest.permission.BLUETOOTH_SCAN)
             }
         }) {
