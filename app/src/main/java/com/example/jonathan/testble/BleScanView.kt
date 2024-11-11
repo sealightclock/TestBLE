@@ -1,7 +1,6 @@
 package com.example.jonathan.testble
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.bluetooth.BluetoothManager
 import android.bluetooth.le.ScanCallback
 import android.bluetooth.le.ScanResult
@@ -37,7 +36,6 @@ import androidx.core.content.ContextCompat
 private const val TAG = "TBLE: BleScanView"
 
 @RequiresApi(Build.VERSION_CODES.S)
-@SuppressLint("MissingPermission")
 @Composable
 fun BleScanner() {
     Log.d(TAG, "BleScanner")
