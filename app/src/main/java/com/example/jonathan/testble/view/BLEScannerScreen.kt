@@ -1,4 +1,4 @@
-package com.example.jonathan.testble
+package com.example.jonathan.testble.view
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -18,6 +18,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.jonathan.testble.viewmodel.BLEViewModel
 
 @Composable
 fun BLEScannerScreen(viewModel: BLEViewModel) {

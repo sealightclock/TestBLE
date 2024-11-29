@@ -1,4 +1,4 @@
-package com.example.jonathan.testble
+package com.example.jonathan.testble.view
 
 import android.content.Context
 import android.content.Intent
@@ -9,6 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 @Composable
+// Do not remove this Composable!
 fun OpenSettingsButton(context: Context) {
     Button(onClick = {
         val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {

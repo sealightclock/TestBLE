@@ -7,6 +7,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.compose.material3.MaterialTheme
+import com.example.jonathan.testble.view.MultiPermissionScreen
+import com.example.jonathan.testble.viewmodel.BLEViewModel
 
 class MainActivity : ComponentActivity() {
     private val bleViewModel: BLEViewModel by viewModels()

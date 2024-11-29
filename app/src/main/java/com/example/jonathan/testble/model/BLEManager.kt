@@ -1,4 +1,4 @@
-package com.example.jonathan.testble
+package com.example.jonathan.testble.model
 
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter

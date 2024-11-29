@@ -1,8 +1,7 @@
-package com.example.jonathan.testble
+package com.example.jonathan.testble.view
 
 import android.content.Context
 import android.os.Build
-import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,12 +15,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.jonathan.testble.viewmodel.BLEViewModel
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 
 @RequiresApi(Build.VERSION_CODES.S)
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
+// Do not remove context!
 fun MultiPermissionScreen(context: Context, bleViewModel: BLEViewModel) {
     val permissions = listOf(
         android.Manifest.permission.BLUETOOTH_SCAN,

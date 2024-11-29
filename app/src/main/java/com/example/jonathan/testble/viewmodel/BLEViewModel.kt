@@ -1,7 +1,8 @@
-package com.example.jonathan.testble
+package com.example.jonathan.testble.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import com.example.jonathan.testble.model.BLEManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
