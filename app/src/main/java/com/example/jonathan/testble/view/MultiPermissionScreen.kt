@@ -19,6 +19,9 @@ import com.example.jonathan.testble.viewmodel.BLEViewModel
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 
+// This is to make sure that permissions can still be granted
+private var isPermissionsDialogLaunched = false
+
 @RequiresApi(Build.VERSION_CODES.S)
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
@@ -30,6 +33,7 @@ fun MultiPermissionScreen(context: Context, bleViewModel: BLEViewModel) {
         android.Manifest.permission.ACCESS_FINE_LOCATION,
         android.Manifest.permission.ACCESS_COARSE_LOCATION
     )
+
     val multiplePermissionsState = rememberMultiplePermissionsState(permissions)
 
     Column(
@@ -41,27 +45,41 @@ fun MultiPermissionScreen(context: Context, bleViewModel: BLEViewModel) {
     ) {
         when {
             multiplePermissionsState.allPermissionsGranted -> {
-                Text("All permissions granted!")
+                Text("allPermissionsGranted")
                 Spacer(modifier = Modifier.height(8.dp))
+                // Go to the next screen:
                 BLEScannerScreen(bleViewModel)
             }
             multiplePermissionsState.shouldShowRationale -> {
-                Text("Permissions are needed for the app to function properly.")
+                Text("shouldShowRationale")
                 Spacer(modifier = Modifier.height(8.dp))
-                Button(onClick = { multiplePermissionsState.launchMultiplePermissionRequest() }) {
+                // Ask user for permissions:
+                Button(onClick = {
+                    isPermissionsDialogLaunched = true
+                    multiplePermissionsState.launchMultiplePermissionRequest()
+                }) {
                     Text("Request Permissions")
                 }
             }
             else -> {
-                Text("Permissions denied or not requested.")
-                Spacer(modifier = Modifier.height(8.dp))
-                // Go to request again:
-                Button(onClick = { multiplePermissionsState.launchMultiplePermissionRequest() }) {
-                    Text("Grant Permissions")
+                if (!isPermissionsDialogLaunched) {
+                    // Not requested yet.
+                    Text("Not requested yet.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    // Ask user for permissions:
+                    Button(onClick = {
+                        isPermissionsDialogLaunched = true
+                        multiplePermissionsState.launchMultiplePermissionRequest()
+                    }) {
+                        Text("Request Permissions")
+                    }
+                } else {
+                    // Permanently denied.
+                    Text("Permanently denied. Use Settings app to allow them.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    // Direct the user to the Settings page:
+                    OpenSettingsButton(context)
                 }
-
-                // Or, direct the user to the Settings page:
-                //OpenSettingsButton(context)
             }
         }
     }
