@@ -26,7 +26,9 @@ import com.google.accompanist.permissions.rememberMultiplePermissionsState
 fun MultiPermissionScreen(context: Context, bleViewModel: BLEViewModel) {
     val permissions = listOf(
         android.Manifest.permission.BLUETOOTH_SCAN,
-        android.Manifest.permission.BLUETOOTH_CONNECT
+        android.Manifest.permission.BLUETOOTH_CONNECT,
+        android.Manifest.permission.ACCESS_FINE_LOCATION,
+        android.Manifest.permission.ACCESS_COARSE_LOCATION
     )
     val multiplePermissionsState = rememberMultiplePermissionsState(permissions)
 
